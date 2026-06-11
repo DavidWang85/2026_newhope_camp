@@ -22,7 +22,7 @@
       --muted:   #5a5a72;
       --border:  #d8d0c0;
       --accent:  #7eb8c4;
-      --sidebar-w: 260px;
+      --sidebar-w: 220px;
       --radius:  10px;
     }
 
@@ -53,7 +53,7 @@
     }
 
     .sidebar-header {
-      padding: 24px 20px 16px;
+      padding: 20px 20px 18px;
       background: linear-gradient(160deg, #1a3150 0%, #2c4a6e 100%);
       border-bottom: 2px solid var(--gold);
     }
@@ -69,6 +69,8 @@
       font-size: 1.05rem;
       line-height: 1.5;
       color: #fff;
+      margin-top: 8px;
+      padding: 0 20px 0 0;
     }
 
     .sidebar-header .date-badge {
@@ -186,24 +188,24 @@
 
     .hero-logo-bg {
       position: absolute;
-      right: -20px;
+      right: -16px;
       top: 50%;
       transform: translateY(-50%);
-      width: 160px;
-      height: 160px;
+      width: 170px;
+      height: 170px;
       object-fit: contain;
-      opacity: 0.12;
+      opacity: 0.5;
       pointer-events: none;
       user-select: none;
-      filter: grayscale(20%) blur(0.5px);
+      filter: none;
       border-radius: 50%;
     }
     @media (max-width: 480px) {
       .hero-logo-bg {
-        width: 110px;
-        height: 110px;
-        right: -14px;
-        opacity: 0.09;
+        width: 120px;
+        height: 120px;
+        right: -12px;
+        opacity: 0.4;
       }
     }
 
@@ -588,6 +590,7 @@
       #topbar { display: flex; }
       #sidebar {
         transform: translateX(-100%);
+        padding-top: 52px;
       }
       #sidebar.open {
         transform: translateX(0);
@@ -837,12 +840,6 @@
     }
     /* Hover highlight for desktop */
     @media (hover: hover) {
-      .annot-block:hover {
-        background: rgba(200, 153, 58, 0.07);
-        border-radius: 4px;
-        outline: 1.5px solid rgba(200, 153, 58, 0.25);
-        outline-offset: 2px;
-      }
       .annot-block:hover .annot-trigger {
         opacity: 1;
       }
@@ -857,53 +854,66 @@
 
     .annot-trigger {
       position: absolute;
-      left: -32px;
+      right: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--gold);
-      color: var(--navy);
+      width: auto;
+      height: auto;
+      border-radius: 4px;
+      background: none;
+      color: var(--gold);
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-family: inherit;
       opacity: 0;
-      transition: opacity 0.15s, transform 0.15s;
+      transition: opacity 0.15s;
       z-index: 10;
       flex-shrink: 0;
-      padding: 0;
+      padding: 2px 4px;
+      white-space: nowrap;
+      pointer-events: auto;
     }
-    .annot-trigger:hover { transform: translateY(-50%) scale(1.15); }
-    .annot-trigger.has-annot {
+    .annot-trigger:hover {
       opacity: 1;
-      background: var(--navy);
-      color: var(--gold);
+      text-decoration: underline;
+    }
+    .annot-trigger.has-annot {
+      display: none;
     }
 
     /* Inline comment display */
     .annot-inline {
-      margin: 6px 0 10px 0;
-      padding: 10px 14px 10px 12px;
-      background: #fefcf5;
-      border: 1px solid #e8dfc4;
-      border-radius: 8px;
+      margin: -2px 0 8px 0;
+      padding: 4px 0 4px 0;
+      background: none;
+      border: none;
+      border-radius: 0;
       font-size: 0.88rem;
       line-height: 1.75;
-      color: var(--text);
+      color: var(--muted);
       display: flex;
-      gap: 10px;
+      gap: 8px;
       align-items: flex-start;
     }
     .annot-inline-icon {
       flex-shrink: 0;
       color: var(--gold);
-      margin-top: 2px;
+      margin-top: 3px;
       opacity: 0.85;
     }
-    .annot-inline-text { flex: 1; white-space: pre-wrap; word-break: break-word; }
+    .annot-inline-text {
+      flex: 1;
+      white-space: pre-wrap;
+      word-break: break-word;
+      text-decoration: underline;
+      text-decoration-color: rgba(200,153,58,0.45);
+      text-underline-offset: 3px;
+    }
     .annot-inline-actions {
       display: flex;
       gap: 2px;
@@ -992,18 +1002,10 @@
     .annot-btn-save:hover { background: var(--blue); }
     .annot-btn-save:active { transform: scale(0.96); }
 
-    /* Mobile: wider touch target, trigger always visible when has-annot */
+    /* Mobile: touch active state */
     @media (max-width: 768px) {
-      .annot-trigger {
-        left: -28px;
-        width: 22px;
-        height: 22px;
-      }
-      .section { padding-left: 36px; }
-    }
-    @media (max-width: 480px) {
-      .annot-trigger { left: -26px; }
-      .section { padding-left: 32px; }
+      .annot-trigger { opacity: 0; }
+      .annot-trigger.has-annot { display: none; }
     }
 
     /* ── SONG IMAGE (clickable) ── */
@@ -1092,7 +1094,7 @@
   <div class="sidebar-header">
     <img id="church-logo" src="" alt="新盼望教會" style="display:none;">
     <div class="church-name">基督教新盼望教會</div>
-    <h1>2026 遇見神<br>水頭山莊營會</h1>
+    <h1>2026 遇見神營會</h1>
     <em class="date-badge">6月19–20日</em>
   </div>
   <nav>
@@ -2064,7 +2066,7 @@
 
       const annotId = buildAnnotId(secId, el, i);
 
-      const comment_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>';
+      const comment_svg = 'Note';
 
       // Wrap in annotatable block
       const wrapper = document.createElement('div');
