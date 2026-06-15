@@ -2,7 +2,7 @@
   "name": "新盼望教會 遇見神營會手冊 2026",
   "short_name": "營會手冊",
   "description": "基督教新盼望教會 2026年水頭山莊遇見神營會手冊",
-  "start_url": "/dental-society/",
+  "start_url": "/2026_newhope_camp/",
   "display": "standalone",
   "background_color": "#faf7f2",
   "theme_color": "#2c4a6e",
@@ -21,6 +21,9 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["education", "lifestyle"],
+  "categories": [
+    "education",
+    "lifestyle"
+  ],
   "lang": "zh-TW"
 }
